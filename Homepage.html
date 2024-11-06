@@ -1,0 +1,396 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%} Home {%endblock title%} - Naturebliss
+    </title>
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, Helvetica, sans-serif;
+                overflow-x: hidden; 
+            }
+            
+            .navbar {
+                background-color: rgb(239, 231, 231);
+                padding: 10px 20px; 
+            }
+            
+            .navdiv {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            
+            .logo a {
+                font-size: 30px;
+                color: rgb(0, 0, 0);
+                font-weight: bold;
+                text-decoration: none;
+            }
+            
+            li {
+                list-style: none;
+                display: inline;
+            }
+            
+            li a {
+                color: black;
+                font-size: 15px;
+                margin-right: 25px;
+                text-decoration: none;
+                transition: color 0.3s; /* Smooth transition for hover effect */
+            }
+            
+            li a:hover {
+                color: rgb(81, 128, 216); /* Change color on hover */
+            }
+            
+            ul {
+                padding: 0;
+                margin: 0;
+            }
+            
+            .backs {
+            background-image: url("{{ url_for('static' , filename='pexels-pixabay-355465.jpg') }}");
+            background-size:auto;
+            fill-opacity: unset;
+            background-position: center;
+            height: 900px; 
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            }
+            
+            .container {
+                padding: 112px 20px; 
+                max-width: 1200px; 
+                margin: auto; 
+                border-radius: 5px;
+            }
+            
+            .slider-wrapper {
+                position: relative;
+                max-width: 768px;
+                margin: auto;
+            overflow: hidden;
+            cursor: pointer;
+    
+            border-radius: 10px; }
+    
+            
+            
+            .slider {
+                display: flex;
+                aspect-ratio: 4 / 3; 
+                width: 100%;
+                box-shadow: 0 1.5rem 3rem -0.75rem hsla(0,0,0,0.25);
+                border-radius: 1rem;
+                transition: transform 0.5s ease;
+            }
+            
+            
+            
+            .slider-button {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: rgba(255, 255, 255, 0.7);
+                border: none;
+                padding: 10px;
+                cursor: pointer;
+                font-size: 24px;
+            }
+            
+            .slider-button.left {
+                left: 10px;
+            }
+            
+            .slider-button.right {
+                right: 10px;
+            }
+            
+            .slider img {
+                width: 100%;
+                height:auto;
+                object-fit: cover;
+            }
+            *{
+                margin: 0px;
+                padding: 0px;
+                font-family: poppins;
+                box-sizing: border-box;
+            }
+            
+            a{
+                text-decoration: none;
+            }
+            
+            ul{
+                list-style: none;
+            }
+            
+            body{
+                margin: 0px;
+                padding: 0px;
+                font-family: poppins;
+            }
+            
+            #blog{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                padding: 50px;
+                border-bottom: 1px solid rgb(0,0,0,0.05);
+            }
+            
+            .blog-heading{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;    
+            }
+            
+            .blog-heading h3{
+                font-size: 2rem;
+                
+            }
+            
+            .blog-container{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 20px 0px;
+                flex-wrap: wrap;
+            }
+            
+            .blog-box{
+                width: 350px;
+                background-color: white;
+                border: 1px solid #ececec;
+                margin: 20px;
+            }
+            
+            .blog-img{
+                width: 100%;
+                height: auto;
+            }
+            
+            .blog-img img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+            
+            .blog-text{
+                padding: 30px;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .blog-text span{
+                font-size: 0.9rem;
+            }
+            
+            .blog-text .blog-title{
+                font-size: 1rem;
+                font-weight: 500;
+                color: rgb(148, 148, 148);
+            }
+            
+            .blog-text .blog-title:hover{
+                color: black;
+                transition: all ease 0.3s;
+            }
+            
+            .blog-text p{
+                font-size: 0.9rem;
+                display: -webkit-box;
+                
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: 20px 0px;
+            }
+            .blog-text a{
+                color: gray;
+            }
+            
+            .blog-text a:hover{
+                color: black;
+                transition: all ease 0.3s;
+            }
+            .i1{
+               aspect-ratio: 4/3;
+            }
+            .i2{
+                aspect-ratio: 4/3;
+            }
+            .i3{
+                aspect-ratio: 4/3;
+            }
+            
+            .dropdown {
+                display: none;
+                position: absolute;
+                background-color: white;
+                border: 1px solid #ccc;
+                z-index: 1;
+            }
+            
+            li:hover .dropdown {
+                display: block;
+            }
+            
+            .dropdown li {
+                display: block;
+                white-space: nowrap;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            
+            li {
+                position: relative;
+                display: inline-block;
+                margin-right: 20px;
+            }
+            
+            a {
+                text-decoration: none;
+                padding: 10px;
+                display: block;
+                color: black;
+            }
+            .slide.active {
+                display: block;
+            }
+        </style>
+</head>
+<body>
+    <div>
+        <nav class="navbar" id="container-float">
+            <div class="navdiv">
+                <div class="logo"><a href="#">Naturebliss</a></div>
+                <ul>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="blog.html">About</a></li>
+                    <li><a href="#">My Blogs</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Animal Blogs</a></li>
+                            <li><a href="himalayas.html">Nature Blogs</a></li>
+                            <li><a href="CreateOwnBlog.html">Create Your own blog</a></li>
+                        </ul></li>
+                    <li><a href="Signup.htm">login</a></li>
+
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+
+    
+ 
+    <div class="backs">
+        <section class="container">
+            <div class="slider-wrapper">
+                <div class="slider">
+                   
+                    
+                    <img id="slide-1" src="{{ url_for('static', filename='pexels-joyston-judah-331625-933054.jpg') }}" alt="The beauty of The Himalayas" >
+                    <img id="slide-2" src="{{ url_for('static', filename='pexels-evgeny-tchebotarev-1058775-2187308.jpg') }}" alt="Pink weather"/>
+                    <img id="slide-3" src="{{url_for('static', filename='pexels-tomfisk-2739664.jpg')}}"alt="The mystery of amazons"/>
+                </div>
+                <button class="slider-button left" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="slider-button right" onclick="changeSlide(1)">&#10095;</button>
+            </div>
+        </section>
+      </div>
+      <section id="blog">
+        <div class="blog-heading">
+            <span>My Posts</span>
+            <h3>My Blog</h3>
+    
+        </div>
+    
+        <div class="blog-container">
+    
+            <div class="blog-box">
+                
+                <div class="blog-img">
+                    <img src="{{ url_for('static', filename='sam-power-VGWrEuP0Fmw-unsplash.jpg') }}" alt="Blog" class="i2">
+    
+                    <div class="Img1">
+                        <span ><b>Wildlife:Do Rhino's really matter?</b></span>
+                        <p>Rhinoceros are a critically endangered species with less than 30,000 rhino living in the wild today. At the start of the 20th century, there were over 500,000. Human activity has caused this dramatic decline in rhino numbers. Initially, numbers dropped due to hunting, but today the main threats to rhino are poaching and habitat loss.</p>
+                        <a href="https://www.helpingrhinos.org/why-are-rhinos-endangered/">Read More</a>
+                    </div>
+                </div>
+                
+            </div>
+    
+            <div class="blog-box">
+                
+                <div class="blog-img">
+                <img src="{{ url_for('static' , filename='jared-rice-NTyBbu66_SI-unsplash.jpg') }}" alt="Blog" class="i1">
+                    <div class="Img2">
+                        <span><b>Finding peace in nature </b></span>
+                        <p>Mental Health America highlights the multitude of benefits that outdoor time brings. Improved focus, reduced stress levels, enhanced mood, and lowered risk of mental health conditions From water to land, nature is here for you., surrounded by vibrant greens and colors along the path, the problems of the day drift away</p>
+                        <a href="https://thousandislandslife.com/finding-peace-in-n">Read More</a>
+                    </div>
+                </div>
+                
+            </div>
+    
+            <div class="blog-box">
+                
+                <div class="blog-img">
+                    <img src="{{ url_for('static' , filename='pexels-clive-kim-2523249-4220967.jpg') }}" alt="Blog" class="i3">
+                    
+                    <div class="Img3">
+                        <span>Volcanic Eruptioons</span>
+                        <a href="#" class="blog-title">What happened to Fashion all of a sudden?</a>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur mollitia repellat recusandae iste laudantium perspiciatis sequi eos. Temporibus dolorum eligendi autem voluptate, iste eveniet soluta minus adipisci. Quas, cupiditate eaque!</p>
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+                
+            </div>
+    
+        </div>
+    
+    
+    </section>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider img');
+        
+        function showSlide(index) {
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+            const offset = -currentSlide * 100; // Calculate offset for the current slide
+            document.querySelector('.slider').style.transform = `translateX(${offset}%)`;
+        }
+        
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+        
+        // Show the first slide initially
+        showSlide(currentSlide);
+        </script>
+        <a href="helpme.html">Go to Help Me</a>
+        <footer>
+            <p>&copy; 2023 Your Name. All rights reserved.</p>
+        </footer>
+    </body>
+    </html>
